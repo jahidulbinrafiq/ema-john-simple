@@ -19,6 +19,7 @@ const Cart = (props) => {
     }else if(total>0){
         shipping=12.99;
     }
+
     return (
         <div>
             <h4>Order Summary:</h4>
