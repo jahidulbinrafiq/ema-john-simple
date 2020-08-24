@@ -1,6 +1,9 @@
 import React from 'react';
 import logo from '../../images/logo.png';
 import './Header.css';
+//  ./ means currennt directory
+
+// ../ ../ meand backtwo step floder
 const Header = () => {
     return (
         <div className='header'>
