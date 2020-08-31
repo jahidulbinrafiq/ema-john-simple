@@ -6,7 +6,8 @@ import Shop from './Components/Shop/Shop';
 import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 import Review from './Components/Review/Review';
 import Inventory from './Components/Invetory/Inventory';
-import NotFound from './Components/NotFound/NotFound'
+import NotFound from './Components/NotFound/NotFound';
+import ProductDetails from './Components/ProductDetails/ProductDetails';
 
 function App() {
   return (
@@ -20,14 +21,17 @@ function App() {
             <Route path='/review'>
                <Review></Review>
             </Route>
-            <Route path="/inventory">
+            <Route  path="/inventory">
               <Inventory></Inventory>
             </Route>
-            <Route path='/'>
+            <Route exact path='/'>
                <Shop></Shop>
             </Route>
-            <Route exact path="*">
-              <NotFound></NotFound>
+            <Route path="/product/:productkey">
+                <ProductDetails></ProductDetails>
+            </Route>
+            <Route  path="*">
+               <NotFound></NotFound>
             </Route>
           </Switch>
        </Router>
