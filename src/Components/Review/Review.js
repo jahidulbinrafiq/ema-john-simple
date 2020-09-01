@@ -5,12 +5,14 @@ import { getDatabaseCart, removeFromDatabaseCart, processOrder } from '../../uti
 import fakeData from '../../fakeData';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
+import happyImage from'../../images/giphy.gif';
 
 const Review = () => {
     const [cart,setCart]=useState([]);
-   
+    // const [orderPlaced,setOrder]=useState(false);
    const hadlePlaceOrder=()=>{
        setCart([]);
+    //    setOrder(false);
        processOrder();
    }
     const  removeProduct=productkey=>{
@@ -30,6 +32,10 @@ const Review = () => {
          });
          setCart(productCart)
     },[])
+//    let thanky;
+//     if (orderPlaced){
+//         thanky=<img src={happyImage} alt=""/>
+//     }
     return (
         <div className="twin-container">
             {/* <h1>Cart Item:{cart.length}</h1> */}
@@ -40,6 +46,7 @@ const Review = () => {
                 ></ReviewItem>)
             }
            </div>
+         
            <div className="cart-container">
                 <Cart cart={cart}>
                 <button className="main-btn" onClick={hadlePlaceOrder}>Place Order</button>
