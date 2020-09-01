@@ -15,12 +15,14 @@ const Review = () => {
            removeFromDatabaseCart(productkey);
     }
     useEffect(()=>{
-        const savedCart=getDatabaseCart();
-        const productkeys=Object.keys(savedCart);
+         const savedCart=getDatabaseCart();
+  
+         const productkeys=Object.keys(savedCart);
          const productCart=productkeys.map(key=>{
              const product=fakeData.find(pd=>pd.key===key)
+             debugger;
               product.quantity=savedCart[key];
-             return product;
+              return product;
          });
          setCart(productCart)
     },[])

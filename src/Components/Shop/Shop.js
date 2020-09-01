@@ -16,6 +16,7 @@ const Shop = () => {
    const handleAddProduct=(product)=>{
     //   console.log('product add',products)
        const toBeAddedKey=product.key;
+
        const sameProduct=cart.find(pd =>pd.key===toBeAddedKey);
        let count=1;
        let newCart;
@@ -30,7 +31,8 @@ const Shop = () => {
          newCart=[...cart,product]
        }
        setCart(newCart);
-       addToDatabaseCart(products.key,count)
+       addToDatabaseCart(product.key,count)
+      
    }
     return (
         <div className='twin-container'>
