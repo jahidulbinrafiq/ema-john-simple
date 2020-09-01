@@ -1,14 +1,18 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { getDatabaseCart, removeFromDatabaseCart } from '../../utilities/databaseManager';
+import { getDatabaseCart, removeFromDatabaseCart, processOrder } from '../../utilities/databaseManager';
 import fakeData from '../../fakeData';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import Cart from '../Cart/Cart';
 
 const Review = () => {
     const [cart,setCart]=useState([]);
-
+   
+   const hadlePlaceOrder=()=>{
+       setCart([]);
+       processOrder();
+   }
     const  removeProduct=productkey=>{
            const newCart=cart.filter(pd=>pd.key!==productkey);
            setCart(newCart);
@@ -37,7 +41,9 @@ const Review = () => {
             }
            </div>
            <div className="cart-container">
-                <Cart cart={cart}></Cart>
+                <Cart cart={cart}>
+                <button className="main-btn" onClick={hadlePlaceOrder}>Place Order</button>
+                </Cart>
            </div>
         </div>
     );
