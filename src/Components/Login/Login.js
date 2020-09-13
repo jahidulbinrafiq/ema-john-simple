@@ -6,6 +6,7 @@ import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router-dom';
 firebase.initializeApp(firebaseConfig);
 function Login() {
+ 
   const [newUser,setNewUser]=useState(false);
   const[user,setUser]=useState({
     isSignIn:false,
@@ -71,17 +72,17 @@ const handleOnChange=(event)=>{
   }
 }
 const handleOnSubmit=(event)=>{
-
+  event.preventDefault();
   if(newUser && user.email && user.password){
     firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
     //successful handle
     .then(res=>{
-       const newUserInfo={...user};
-       newUserInfo.error='';
-       newUserInfo.success=true;
-       setUser(newUserInfo);
-       setLoggedInUser(newUserInfo);
-       history.replace(from);
+        const newUserInfo={...user};
+        newUserInfo.error='';
+        newUserInfo.success=true;
+        setUser(newUserInfo);
+         setLoggedInUser(newUserInfo);
+         history.replace(from);
      
     })
     //error handles
@@ -100,6 +101,8 @@ const handleOnSubmit=(event)=>{
       newUserInfo.error='';
       newUserInfo.success=true;
       setUser(newUserInfo)
+      setLoggedInUser(newUserInfo);
+      history.replace(from);
    })
     
     .catch(function(error) {
@@ -110,7 +113,7 @@ const handleOnSubmit=(event)=>{
      
     });
   }
-   event.preventDefault();
+
 }
   return (
    <div style={{textAlign:'center'}}>
@@ -119,6 +122,8 @@ const handleOnSubmit=(event)=>{
    {
      user.isSignIn?<button onClick={handelSingOut}>Sing Out</button>:<button onClick={handleSingIn}>Sing In </button>
    }
+   <br/>
+   <button>Facebook Login</button>
      {
        user.isSignIn && 
        <div>
